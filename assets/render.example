@@ -1,0 +1,89 @@
+#! /bin/bash
+
+BRANCH=${TRAVIS_BRANCH:-preprod}
+COMMIT=${TRAVIS_COMMIT:-latest}
+ENV=${BRANCH}
+
+if [ "${BRANCH}" != "prod" ]; then
+  APP_NAME="${BRANCH}-${APP_NAME}"
+fi
+
+DNS="${APP_NAME}.${DOMAIN_NAME}"
+
+function init_templates {
+  local TEMPLATE=$(dirname $(readlink -f $0))/kube-templates/${APP_NAME}.yaml
+  echo "TEMPLATE: $TEMPLATE"
+  mkdir -p $(dirname $TEMPLATE)
+  cat << EOF > $TEMPLATE
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_NAME}
+  labels:
+    app: ${APP_NAME}
+    env: ${ENV}
+  namespace: ${ENV}
+spec:
+  selector:
+    app: ${APP_NAME}
+    env: ${ENV}
+  ports:
+    - port: ${APP_PORT}
+      name: ${APP_NAME}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}
+  labels:
+    app: ${APP_NAME}
+    env: ${ENV}
+  namespace: ${ENV}
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME}
+        env: ${ENV}
+    spec:
+      containers:
+      - name: ${APP_NAME}
+        image: "${ECR_URL}/${IMAGE_NAME}:${TRAVIS_COMMIT}"
+        imagePullPolicy: Always
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ${APP_NAME}
+  namespace: ${ENV}
+spec:
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: ${APP_NAME}
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: ${ENV}
+  name: ${APP_NAME}
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+    - host: ${DNS}
+      http:
+        paths:
+          - backend:
+              serviceName: ${APP_NAME}
+              servicePort: ${APP_PORT}
+EOF
+}
+
+init_templates

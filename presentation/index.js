@@ -32,6 +32,8 @@ import {
   Text
 } from "spectacle";
 
+import CodeSlide from 'spectacle-code-slide';
+
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
 
@@ -57,7 +59,7 @@ const images = {
   kubernetes: require("../assets/kubernetes-logo.png"),
   kubernetes_v: require("../assets/kubernetes_v.png"),
   kubernetes_h: require("../assets/kubernetes_h.png"),
-  Træfɪk_v: require("../assets/traefik_v.png"),
+  traefik_v: require("../assets/traefik_v.png"),
   dcos: require("../assets/dcos.png"),
   come: require("../assets/come.gif"),
   morbier: require("../assets/morbier.png")
@@ -78,7 +80,7 @@ const theme = createTheme({
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck transition={["zoom", "slide"]} progress="bar" transitionDuration={500} theme={theme}>
+      <Deck transition={[]} progress="bar" transitionDuration={500} theme={theme}>
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={1} fit caps textColor="secondary">
             Scaling
@@ -100,7 +102,7 @@ export default class Presentation extends React.Component {
               <Image src={images.kubernetes_v.replace("/", "")} margin="1.5em auto auto" height="100px"/>
             </Fill>
             <Fill>
-              <Image src={images.Træfɪk_v.replace("/", "")} margin="1.5em auto auto" height="100px"/>
+              <Image src={images.traefik_v.replace("/", "")} margin="1.5em auto auto" height="100px"/>
             </Fill>
           </Layout>
           <Heading size={1} fit caps margin="50px auto auto" textColor="tertiary">
@@ -336,7 +338,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={4} caps textColor="secondary">
-            Træfɪk
+            Træfik
           </Heading>
           <Image src={images.morbier.replace("/", "")} padding="5" height="200px"/>
           <List textColor="tertiary">
@@ -344,12 +346,12 @@ export default class Presentation extends React.Component {
             <ListItem textSize="1.1em">Ingress controller</ListItem>
             <ListItem textSize="1.1em">Watches Kubernetes API for ingress rules</ListItem>
             <ListItem textSize="1.1em">Let's encrypt</ListItem>
-            <ListItem textSize="1.1em">HA with K/V</ListItem>
+            <ListItem textSize="1.1em">HA with K / V</ListItem>
           </List>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={4} caps textColor="secondary">
-            Træfɪk
+            Træfik
           </Heading>
           <Heading size={4} caps textColor="tertiary">
             Let's Encrypt
@@ -361,15 +363,15 @@ export default class Presentation extends React.Component {
             <ListItem textSize="1.1em">Challenge storage</ListItem>
             <ListItem textSize="1.1em">Cert storage</ListItem>
           </List>
-          <Text caps fit textColor="secondary">Træfɪk uses a K/V store ❤</Text>
+          <Text caps fit textColor="secondary">Træfik uses a K / V store ❤</Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={4} caps textColor="secondary">
-            Træfɪk
+            Træfik
           </Heading>
           <List textColor="tertiary">
             <ListItem textSize="1.1em">Act as in entrypoint for the cluster</ListItem>
-            <ListItem textSize="1.1em">Can be autoscale like any other deployment</ListItem>
+            <ListItem textSize="1.1em">Can be autoscaled like any other deployment</ListItem>
             <ListItem textSize="1.1em">Configuration backed in Consul or Etcd</ListItem>
             <ListItem textSize="1.1em">Free and automated TLS cert</ListItem>
           </List>
@@ -383,8 +385,8 @@ export default class Presentation extends React.Component {
               Cluster is composed of:
                 <List textColor="tertiary">
                   <ListItem textSize="2rem" margin="15px 30px auto">Kubernetes system services</ListItem>
-                  <ListItem textSize="2rem" margin="15px 30px auto">Træfɪk as an ingress controller</ListItem>
-                  <ListItem textSize="2rem" margin="15px 30px auto">Dev / Preprod / Prod namespaces</ListItem>
+                  <ListItem textSize="2rem" margin="15px 30px auto">Træfik as an ingress controller</ListItem>
+                  <ListItem textSize="2rem" margin="15px 30px auto">Preprod / Prod namespaces</ListItem>
                 </List>
             </ListItem>
             <ListItem margin="15px auto auto" textSize="1.1em">
@@ -414,9 +416,38 @@ export default class Presentation extends React.Component {
             <ListItem textSize="1.1em">All of this is done per branch</ListItem>
           </List>
         </Slide>
+        <CodeSlide
+            transition={[]}
+            lang="js"
+            code={require("raw-loader!../assets/render.example")}
+            ranges={[
+              { loc: [0, 1], title: "CI templating" },
+              { loc: [2, 11], note: "Per branch workflow" },
+              { loc: [12, 17], note: "Templating" },
+              { loc: [17, 33], note: "Service" },
+              { loc: [33, 55], note: "Deployment" },
+              { loc: [55, 69] , note: "POD autoscaler" },
+              { loc: [69, 85], note: "Ingress rule" },
+            ]}/>
+        <CodeSlide
+            transition={[]}
+            lang="js"
+            code={require("raw-loader!../assets/travis.example")}
+            ranges={[
+              { loc: [0, 1], title: "Travis config" },
+              { loc: [2, 4], note: "Enable Docker" },
+              { loc: [5, 9], note: "Only build preprod and prod" },
+              { loc: [10, 22], note: "ENV var to customize template" },
+              { loc: [23, 26], note: "Build Docker image" },
+              { loc: [26, 29], note: "Install AWS CLI" },
+              { loc: [29, 31] , note: "Tag docker image with commit for AWS ECR" },
+              { loc: [31, 33] , note: "Create ECR repo and push image" },
+              { loc: [33, 35], note: "Download Kubectl to access K8s API" },
+              { loc: [35, 37], note: "Render template and apply them to cluster" }
+            ]}/>
         <Slide transition={["fade"]} bgColor="primary" textColor="secondary">
           <Heading textColor="secondary" size={3} caps fit>
-            Conclusion
+            Demo & Conclusion
           </Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
