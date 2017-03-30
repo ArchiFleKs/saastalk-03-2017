@@ -110,6 +110,15 @@ export default class Presentation extends React.Component {
           </Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary">
+          <Heading size={2} textColor="secondary">
+            whoami
+          </Heading>
+          <Text margin="40px auto auto" textColor="tertiary">Cloud and Devops Engineer<Link textColor="secondary" href="https://twitter.com/osones"> @osones</Link></Text>
+          <Link href="https://osones.com"><Image src={images.osones_e.replace("/", "")} margin="20px auto auto" height="100px"/></Link>
+          <Text margin="20px auto auto" textColor="tertiary">I Work on OpenStack and AWS</Text>
+          <Text margin="40px auto auto" textColor="tertiary">I ❤  Docker and K8s</Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary">
           <Appear>
           <Heading size={4} margin="30px auto auto" caps textColor="secondary">
             Scaling Kubernetes
@@ -125,15 +134,6 @@ export default class Presentation extends React.Component {
             Integrating with CI
           </Heading>
           </Appear>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="primary">
-          <Heading size={2} textColor="secondary">
-            whoami
-          </Heading>
-          <Text margin="40px auto auto" textColor="tertiary">Cloud and Devops Engineer<Link textColor="secondary" href="https://twitter.com/osones"> @osones</Link></Text>
-          <Link href="https://osones.com"><Image src={images.osones_e.replace("/", "")} margin="20px auto auto" height="100px"/></Link>
-          <Text margin="20px auto auto" textColor="tertiary">I Work on OpenStack and AWS</Text>
-          <Text margin="40px auto auto" textColor="tertiary">I ❤  Docker and K8s</Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary">
           <Heading size={4} caps textColor="secondary">
