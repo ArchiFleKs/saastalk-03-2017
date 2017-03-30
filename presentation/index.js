@@ -132,7 +132,7 @@ export default class Presentation extends React.Component {
           </Heading>
           <Text margin="40px auto auto" textColor="tertiary">Cloud and Devops Engineer<Link textColor="secondary" href="https://twitter.com/osones"> @osones</Link></Text>
           <Link href="https://osones.com"><Image src={images.osones_e.replace("/", "")} margin="20px auto auto" height="100px"/></Link>
-          <Text margin="20px auto auto" textColor="tertiary">Work on OpenStack and AWS</Text>
+          <Text margin="20px auto auto" textColor="tertiary">I Work on OpenStack and AWS</Text>
           <Text margin="40px auto auto" textColor="tertiary">I ❤  Docker and K8s</Text>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary">
@@ -231,8 +231,8 @@ export default class Presentation extends React.Component {
             AWS driven
           </Heading>
           <List textColor="tertiary">
-            <ListItem textSize="1.2em">Leverage CloudWatch metric</ListItem>
-            <ListItem textSize="1.2em">Scale up/down ASG on AWS</ListItem>
+            <ListItem textSize="1.2em">Leverages CloudWatch metric</ListItem>
+            <ListItem textSize="1.2em">Scales up/down ASG on AWS</ListItem>
             <ListItem textSize="1.2em">CloudWatch is not K8s aware</ListItem>
             <ListItem textSize="1.2em">Requires fine tuning</ListItem>
           </List>
@@ -276,7 +276,7 @@ export default class Presentation extends React.Component {
           </Heading>
           <List textColor="tertiary">
             <ListItem textSize="1.1em">Kubernetes API object</ListItem>
-            <ListItem textSize="1.1em">Watch PODs based on resources</ListItem>
+            <ListItem textSize="1.1em">Watches PODs based on resources</ListItem>
             <ListItem textSize="1.1em">Linked to a deployment object</ListItem>
             <ListItem textSize="1.1em">Scales up/down deployment replicas</ListItem>
           </List>
@@ -371,7 +371,7 @@ export default class Presentation extends React.Component {
             Træfik
           </Heading>
           <List textColor="tertiary">
-            <ListItem textSize="1.1em">Act as in entrypoint for the cluster</ListItem>
+            <ListItem textSize="1.1em">Acts as in entrypoint for the cluster</ListItem>
             <ListItem textSize="1.1em">Can be autoscaled like any other deployment</ListItem>
             <ListItem textSize="1.1em">Configuration backed in Consul or Etcd</ListItem>
             <ListItem textSize="1.1em">Free and automated TLS cert</ListItem>
@@ -408,11 +408,11 @@ export default class Presentation extends React.Component {
             Git push workflow
           </Heading>
           <List textColor="tertiary">
-            <ListItem textSize="1.1em">Run tests</ListItem>
-            <ListItem textSize="1.1em">Build docker images for the app</ListItem>
-            <ListItem textSize="1.1em">Test the images</ListItem>
-            <ListItem textSize="1.1em">Push images into registry: ECR</ListItem>
-            <ListItem textSize="1.1em">Ensure cluster is idempotent</ListItem>
+            <ListItem textSize="1.1em">Runs tests</ListItem>
+            <ListItem textSize="1.1em">Builds docker images for the app</ListItem>
+            <ListItem textSize="1.1em">Tests the images</ListItem>
+            <ListItem textSize="1.1em">Pushes images into registry: ECR</ListItem>
+            <ListItem textSize="1.1em">Ensures cluster is idempotent</ListItem>
             <ListItem textSize="1.1em">Rolling update the app</ListItem>
             <ListItem textSize="1.1em">All of this is done per branch</ListItem>
           </List>
@@ -436,15 +436,15 @@ export default class Presentation extends React.Component {
             code={require("raw-loader!../assets/travis.example")}
             ranges={[
               { loc: [0, 1], title: "Travis config" },
-              { loc: [2, 4], note: "Enable Docker" },
+              { loc: [2, 4], note: "Enables Docker" },
               { loc: [5, 9], note: "Only build preprod and prod" },
               { loc: [10, 22], note: "ENV var to customize template" },
-              { loc: [23, 26], note: "Build Docker image" },
-              { loc: [26, 29], note: "Install AWS CLI" },
-              { loc: [29, 31] , note: "Tag docker image with commit for AWS ECR" },
-              { loc: [31, 33] , note: "Create ECR repo and push image" },
+              { loc: [23, 26], note: "Builds Docker image" },
+              { loc: [26, 29], note: "Installs AWS CLI" },
+              { loc: [29, 31] , note: "Tags docker image with commit for AWS ECR" },
+              { loc: [31, 33] , note: "Creates ECR repo and push image" },
               { loc: [33, 35], note: "Download Kubectl to access K8s API" },
-              { loc: [35, 37], note: "Render template and apply them to cluster" }
+              { loc: [35, 37], note: "Renders templates and apply them to cluster" }
             ]}/>
         <Slide transition={["fade"]} bgColor="primary" textColor="secondary">
           <Heading textColor="secondary" size={3} caps fit>
