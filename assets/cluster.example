@@ -1,0 +1,26 @@
+clusterName: k8s-osones-demo
+externalDNSName: kubernetes.archifleks.xyz
+keyName: zero
+region: eu-west-1
+kmsKeyArn: "arn:aws:kms:eu-west-1:161285725140:key/130f8fa4-4380-4d68-bceb-29087998e75a"
+controller:
+  autoScalingGroup:
+    minSize: 1
+    maxSize: 3
+worker:
+  nodePools:
+      name: demo
+      autoScalingGroup:
+        minSize: 3
+        maxSize: 5
+etcdCount: 3
+subnets:
+  - name: KubeDemoPublicSubnet1
+    availabilityZone: eu-west-1a
+    instanceCIDR: "10.0.1.0/24"
+  - name: KubeDemoPublicSubnet2
+    availabilityZone: eu-west-1b
+    instanceCIDR: "10.0.2.0/24"
+  - name: KubeDemodPublicSubnet3
+    availabilityZone: eu-west-1c
+    instanceCIDR: "10.0.3.0/24"

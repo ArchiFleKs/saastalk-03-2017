@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: myapp
+spec:
+  rules:
+    - host: myapp.archifleks.xyz
+      http:
+        paths:
+          - backend:
+              serviceName: myapp
+              servicePort: 80

@@ -1,0 +1,11 @@
+---
+kind: Deployment
+      containers:
+        - image: gcr.io/google_containers/cluster-autoscaler:v0.4.0
+          name: cluster-autoscaler
+          command:
+            - ./cluster-autoscaler
+            - --v=4
+            - --cloud-provider=aws
+            - --skip-nodes-with-local-storage=false
+            - --nodes=3:10:k8s-worker-asg-1

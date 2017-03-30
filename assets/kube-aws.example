@@ -1,0 +1,13 @@
+Available Commands:
+  calculator  Discovery the monthly cost of your cluster
+  destroy     Destroy an existing Kubernetes cluster
+  init        Initialize default node pool configuration
+  render      Render deployment artifacts
+  status      Describe an existing Kubernetes cluster
+  up          Create a new Kubernetes cluster
+  update      Update an existing Kubernetes cluster
+  validate    Validate cluster assets
+  version     Print version information and exit
+
+Cluster Name:           k8s-osones-demo
+Controller DNS Name:    k8s-osone-ElbAPISe-1NESSSOY1BZAY-294928509.eu-west-1.elb.amazonaws.com

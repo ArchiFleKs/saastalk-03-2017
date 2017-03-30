@@ -1,0 +1,27 @@
+total 40K
+-rw-------  1 lefevrek staff  35K Mar 28 13:20 cluster.yaml
+drwx------ 40 lefevrek staff 1.4K Mar 28 13:20 credentials/
+-rw-------  1 lefevrek staff  546 Mar 28 13:18 kubeconfig
+drwxr-xr-x  5 lefevrek staff  170 Mar 28 13:18 stack-templates/
+drwxr-xr-x  5 lefevrek staff  170 Mar 28 13:18 userdata/
+
+NAME                                       STATUS    AGE
+ip-10-0-1-207.eu-west-1.compute.internal   Ready     1d
+ip-10-0-1-79.eu-west-1.compute.internal    Ready     1d
+ip-10-0-2-126.eu-west-1.compute.internal   Ready     1d
+ip-10-0-3-245.eu-west-1.compute.internal   Ready     1d
+
+NAMESPACE     NAME                                                              READY     STATUS    RESTARTS   AGE
+kube-system   cluster-autoscaler-2550318222-gq0s4                               1/1       Running   0          3h
+kube-system   heapster-v1.3.0-567306696-szrx4                                   2/2       Running   0          1d
+kube-system   kube-apiserver-ip-10-0-1-79.eu-west-1.compute.internal            1/1       Running   0          1d
+kube-system   kube-controller-manager-ip-10-0-1-79.eu-west-1.compute.internal   1/1       Running   0          1d
+kube-system   kube-dns-782804071-pc6c6                                          4/4       Running   0          1d
+kube-system   kube-dns-782804071-s795t                                          4/4       Running   0          1d
+kube-system   kube-dns-autoscaler-2813114833-ttxx9                              1/1       Running   0          1d
+kube-system   kube-proxy-ip-10-0-1-207.eu-west-1.compute.internal               1/1       Running   0          1d
+kube-system   kube-proxy-ip-10-0-1-79.eu-west-1.compute.internal                1/1       Running   0          1d
+kube-system   kube-proxy-ip-10-0-2-126.eu-west-1.compute.internal               1/1       Running   0          1d
+kube-system   kube-proxy-ip-10-0-3-245.eu-west-1.compute.internal               1/1       Running   0          1d
+kube-system   kube-scheduler-ip-10-0-1-79.eu-west-1.compute.internal            1/1       Running   0          1d
+kube-system   kubernetes-dashboard-v1.5.1-tn2qp                                 1/1       Running   0          1d
