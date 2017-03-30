@@ -329,6 +329,7 @@ export default class Presentation extends React.Component {
             <ListItem textSize="1.1em">Acts as an L4 load balancer</ListItem>
             <ListItem textSize="1.1em">Abstract PODs</ListItem>
             <ListItem textSize="1.1em">PODs are not reached directly</ListItem>
+            <ListItem textSize="1.1em">Service discovery</ListItem>
           </List>
           <CodePane
             lang="YAML"
